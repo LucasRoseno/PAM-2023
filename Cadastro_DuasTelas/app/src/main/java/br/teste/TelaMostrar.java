@@ -1,0 +1,43 @@
+package br.teste;
+
+import static br.teste.Compartilha.list;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TelaMostrar extends AppCompatActivity {
+    ListView listView;
+    Button btnVoltar;
+    List<String> m;
+    Compartilha cp = new Compartilha();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tela_mostrar);
+        btnVoltar = findViewById(R.id.btnVoltar);
+        listView = findViewById(R.id.listView);
+
+        m = new ArrayList<String>();
+        m = cp.getList();
+        ArrayAdapter<String>adpN = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1,m);
+
+        listView.setAdapter(adpN);
+
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+}
